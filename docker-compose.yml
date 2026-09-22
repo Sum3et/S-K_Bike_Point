@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # Database Service: PostgreSQL 16
+  postgres:
+    image: postgres:16-alpine
+    container_name: skbikepoint-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: skbikepoint
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d skbikepoint"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Service: Spring Boot 3 + Java 21
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: skbikepoint-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DATABASE_URL: jdbc:postgresql://postgres:5432/skbikepoint
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      JWT_SECRET: skBikePointWorkshopSecretKey2026SecureJWTTokenSuperLongKeyForHS256Algorithm
+      JWT_EXPIRATION_MS: 86400000
+      CORS_ALLOWED_ORIGINS: "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173"
+
+  # Frontend Service: React + Vite + Nginx
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: skbikepoint-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:
+    name: skbikepoint_postgres_data
