@@ -303,8 +303,8 @@ export const HomePage: React.FC = () => {
                 placeholder="Enter Vehicle Number (e.g. MH 02 AB 1234)"
                 className="flex-1 rounded-xl bg-white border border-slate-300 px-4 py-2.5 text-sm text-slate-900 font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 uppercase"
               />
-              <Button type="submit" variant="primary" size="md" leftIcon={<Search className="w-4 h-4" />}>
-                Check Status
+              <Button type="submit" variant="primary" size="md" isLoading={isSearching} disabled={isSearching} leftIcon={<Search className="w-4 h-4" />}>
+                {isSearching ? 'Checking...' : 'Check Status'}
               </Button>
             </form>
 
