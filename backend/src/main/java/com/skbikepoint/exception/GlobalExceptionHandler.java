@@ -30,13 +30,18 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
 
-        ApiResponse<Map<String, String>> response = ApiResponse.<Map<String, String>>builder()
-                .success(false)
-                .message("Validation failed: Please check input fields")
-                .data(errors)
-                .errorCode("VALIDATION_ERROR")
-                .build();
+        ApiResponse<Map<String, String>> response = new ApiResponse<>();
+        response.setSuccess(false);
+        response.setMessage("Validation failed: Please check input fields");
+        response.setData(errors);
+        response.setErrorCode("VALIDATION_ERROR");
 
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiResponse<Void>> handleBadRequestException(BadRequestException ex) {
+        ApiResponse<Void> response = ApiResponse.error(ex.getMessage(), "BAD_REQUEST");
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
