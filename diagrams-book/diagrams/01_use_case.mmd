@@ -1,0 +1,39 @@
+flowchart LR
+  subgraph PublicAndCustomer ["Customer & Public Domain"]
+    UC1(["Cost Estimator & Packages"])
+    UC2(["Live Vehicle Repair Tracking"])
+    UC3(["Schedule Service Booking"])
+  end
+
+  subgraph WorkshopOps ["Workshop Floor & Operations"]
+    UC4(["Manage Active Job Cards"])
+    UC5(["Update Stage & Diagnostics"])
+    UC6(["Spares Stock & Thresholds"])
+  end
+
+  subgraph BillingManagement ["Billing & Workshop Analytics"]
+    UC7(["Generate GST 18% Invoices"])
+    UC8(["Download Bills & WhatsApp"])
+    UC9(["Revenue & Analytics Dashboard"])
+  end
+
+  Guest["Guest / Rider"]
+  Customer["Customer"]
+  Mechanic["Mechanic"]
+  Admin["Workshop Admin"]
+
+  Guest --> UC1
+  Guest --> UC2
+  Guest --> UC3
+
+  Customer --> UC2
+  Customer --> UC3
+  Customer --> UC8
+
+  Mechanic --> UC4
+  Mechanic --> UC5
+
+  Admin --> UC4
+  Admin --> UC6
+  Admin --> UC7
+  Admin --> UC9

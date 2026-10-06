@@ -1,0 +1,12 @@
+sequenceDiagram
+  autonumber
+  actor Mech as Lead Mechanic
+  actor Admin as Workshop Admin
+  participant API as Backend API
+  participant DB as Database
+
+  Mech->>API: PUT /api/admin/jobs/update-stage (Stage: Ready)
+  API->>DB: Update Stage & Decrement Spares Inventory
+  Admin->>API: POST /api/admin/invoices/generate (JobId)
+  API->>DB: Compute Parts + Labor + 18% GST & Insert Invoice
+  API-->>Admin: 201 Created (Tax Invoice PDF & WhatsApp Link)

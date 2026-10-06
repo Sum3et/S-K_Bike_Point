@@ -1,0 +1,11 @@
+flowchart TD
+  A([1. Vehicle Intake & Check-in]) --> B[2. 24-Point Technical Inspection]
+  B --> C{Spares Needed?}
+  C -->|Yes| D[Issue Spares from Inventory]
+  C -->|No| E[Direct Mechanical Repair]
+  D --> E
+  E --> F[Foam Wash & Detailing]
+  F --> G[QC Road Test & Inspection]
+  G --> H[Generate GST 18% Invoice]
+  H --> I[UPI / Counter Settlement]
+  I --> J([Key Handover & Gate Pass])

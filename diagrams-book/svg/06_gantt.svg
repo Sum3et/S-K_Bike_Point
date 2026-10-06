@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 552" width="1400" height="552">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .header-title { font-size: 13px; font-weight: 900; fill: #0f172a; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.5px; }
+      .week-text { font-size: 13px; font-weight: 800; fill: #1e293b; text-anchor: middle; }
+      .stage-title { font-size: 13px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+      .bar-text { font-size: 11px; font-weight: 700; fill: #ffffff; letter-spacing: 0.2px; }
+    </style>
+    <filter id="cardShadow" x="-1%" y="-1%" width="102%" height="104%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.05" />
+    </filter>
+  </defs>
+
+  <!-- Clean Pure White Background -->
+  <rect width="1400" height="552" fill="#ffffff" />
+
+  <!-- Outer Card Frame -->
+  <rect x="15" y="15" width="1370" height="522" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" filter="url(#cardShadow)" />
+
+  <!-- Top Header: Stage Box -->
+  <rect x="30" y="28" width="230" height="42" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="145" y="54" class="header-title">Stage</text>
+
+  <!-- Top Header: Week Column Pills -->
+  <rect x="269" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="333.75" y="54" class="week-text">Week 1</text>
+  <rect x="406.5" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="471.25" y="54" class="week-text">Week 2</text>
+  <rect x="544" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="608.75" y="54" class="week-text">Week 3</text>
+  <rect x="681.5" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="746.25" y="54" class="week-text">Week 4</text>
+  <rect x="819" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="883.75" y="54" class="week-text">Week 5</text>
+  <rect x="956.5" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="1021.25" y="54" class="week-text">Week 6</text>
+  <rect x="1094" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="1158.75" y="54" class="week-text">Week 7</text>
+  <rect x="1231.5" y="28" width="129.5" height="42" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="1296.25" y="54" class="week-text">Week 8</text>
+
+  <!-- Stage Group: Strategy & Architecture -->
+  <rect x="30" y="85" width="230" height="90" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+  <text x="145" y="124" class="stage-title">Strategy &amp;</text>
+  <text x="145" y="144" class="stage-title">Architecture</text>
+  <rect x="265" y="85" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="278.75" y="85" width="247.5" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="359.1875" y="103.5" width="86.625" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="292.75" y="109" class="bar-text">1. Requirements & Workflows</text>
+  </g>
+  <rect x="265" y="133" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="375" y="133" width="247.5" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="455.4375" y="151.5" width="86.625" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="389" y="157" class="bar-text">2. Database Schema & API Specs</text>
+  </g>
+
+  <!-- Stage Group: Core Backend & Security -->
+  <rect x="30" y="181" width="230" height="90" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+  <text x="145" y="220" class="stage-title">Core Backend &amp;</text>
+  <text x="145" y="240" class="stage-title">Security</text>
+  <rect x="265" y="181" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="512.5" y="181" width="261.25" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="597.40625" y="199.5" width="91.4375" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="526.5" y="205" class="bar-text">3. Spring Boot REST & JPA Repos</text>
+  </g>
+  <rect x="265" y="229" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="622.5" y="229" width="247.5" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="702.9375" y="247.5" width="86.625" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="636.5" y="253" class="bar-text">4. JWT Auth & Role Permissions</text>
+  </g>
+
+  <!-- Stage Group: Workshop Floor & UI -->
+  <rect x="30" y="277" width="230" height="138" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+  <text x="145" y="340" class="stage-title">Workshop Floor &amp;</text>
+  <text x="145" y="360" class="stage-title">UI</text>
+  <rect x="265" y="277" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="732.5" y="277" width="261.25" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="817.40625" y="295.5" width="91.4375" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="746.5" y="301" class="bar-text">5. Public Estimator & Tracker UI</text>
+  </g>
+  <rect x="265" y="325" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="828.75" y="325" width="261.25" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="913.65625" y="343.5" width="91.4375" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="842.75" y="349" class="bar-text">6. Service Job Cards & Mechanics</text>
+  </g>
+  <rect x="265" y="373" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="925" y="373" width="247.5" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="1005.4375" y="391.5" width="86.625" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="939" y="397" class="bar-text">7. Spares Inventory & Alerts</text>
+  </g>
+
+  <!-- Stage Group: Billing & Launch -->
+  <rect x="30" y="421" width="230" height="90" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+  <text x="145" y="460" class="stage-title">Billing &amp;</text>
+  <text x="145" y="480" class="stage-title">Launch</text>
+  <rect x="265" y="421" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="1021.25" y="421" width="247.5" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="1101.6875" y="439.5" width="86.625" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="1035.25" y="445" class="bar-text">8. GST 18% Invoices & WhatsApp</text>
+  </g>
+  <rect x="265" y="469" width="1100" height="40" rx="20" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+  <g>
+    <rect x="1117.5" y="469" width="220" height="40" rx="20" fill="#0f2744" stroke="#09182a" stroke-width="1.2" />
+    <rect x="1189" y="487.5" width="77" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+    <text x="1131.5" y="493" class="bar-text">9. QA Testing & Deployment</text>
+  </g>
+</svg>

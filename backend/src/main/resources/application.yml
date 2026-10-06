@@ -10,15 +10,16 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
   datasource:
-    url: ${DATABASE_URL:jdbc:h2:mem:skbikepointdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL}
-    username: ${DATABASE_USERNAME:sa}
-    password: ${DATABASE_PASSWORD:}
-    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+    url: ${DATABASE_URL:jdbc:postgresql://aws-0-ap-south-1.pooler.supabase.com:5432/postgres?sslmode=require}
+    username: ${DATABASE_USERNAME:postgres.rfuhtriyynsiccgvnxsk}
+    password: ${DATABASE_PASSWORD:sum3et@skbikepoint}
+    driver-class-name: ${DATABASE_DRIVER:org.postgresql.Driver}
 
   jpa:
+    generate-ddl: true
     hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:update}
-    show-sql: ${SHOW_SQL:false}
+      ddl-auto: update
+    show-sql: false
     properties:
       hibernate:
         format_sql: true

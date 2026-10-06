@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph FloorActions ["Technician & Floor Actions"]
+    UC_M1(["Step Updates: Intake to Ready"])
+    UC_M2(["Log Installed Parts & Oil Flush"])
+  end
+
+  subgraph AdminActions ["Manager & Billing Actions"]
+    UC_A1(["Job Card Creation & Mechanic Allocation"])
+    UC_A2(["Inventory Stock Adjustment & Alerts"])
+    UC_A3(["GST Invoice Generation & Tax Settle"])
+  end
+
+  Mechanic["Floor Mechanic"]
+  Admin["Workshop Admin"]
+
+  Mechanic --> UC_M1
+  Mechanic --> UC_M2
+
+  Admin --> UC_A1
+  Admin --> UC_M1
+  Admin --> UC_A2
+  Admin --> UC_A3

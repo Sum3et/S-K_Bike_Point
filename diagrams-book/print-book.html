@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S K Bike Point — Architecture & UML Diagram Book</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+    :root {
+      --primary: #ea580c;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
+      --slate-50: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: var(--slate-900);
+      line-height: 1.5;
+    }
+
+    .top-action-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 2px solid var(--slate-200);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .top-action-bar h2 {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--slate-900);
+      text-transform: uppercase;
+    }
+
+    .top-action-bar h2 span {
+      color: var(--primary);
+    }
+
+    .print-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .book-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .page {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--slate-200);
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover-page {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      min-height: 750px;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+      border: 2px solid #fed7aa;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: #ffedd5;
+      color: #9a3412;
+      border: 1px solid #fdba74;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--slate-900);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .cover-title span {
+      color: var(--primary);
+    }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: var(--slate-700);
+      margin: 0 auto 30px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 700px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--slate-200);
+      text-align: left;
+    }
+
+    .meta-box span {
+      font-size: 11px;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+    }
+
+    .meta-box strong {
+      font-size: 13px;
+      color: var(--slate-900);
+    }
+
+    .diagram-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--slate-900);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .figure-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .diagram-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--slate-900);
+      margin-top: 2px;
+    }
+
+    .diagram-desc {
+      font-size: 13px;
+      color: var(--slate-500);
+      margin-top: 2px;
+    }
+
+    .type-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      text-transform: uppercase;
+    }
+
+    .diagram-canvas {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 24px;
+      min-height: 480px;
+      overflow: hidden;
+    }
+
+    .diagram-canvas img {
+      max-width: 100%;
+      max-height: 520px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .diagram-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--slate-200);
+      padding-top: 12px;
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--slate-500);
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 10mm;
+      }
+
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .top-action-bar {
+        display: none !important;
+      }
+
+      .book-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 10mm 12mm !important;
+        margin: 0 !important;
+        min-height: 190mm !important;
+        max-height: 195mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+      }
+
+      .cover-page {
+        min-height: 190mm !important;
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
+      }
+
+      .diagram-canvas {
+        border: 1px solid #94a3b8 !important;
+        padding: 12px !important;
+        min-height: 125mm !important;
+        max-height: 135mm !important;
+      }
+
+      .diagram-canvas img {
+        max-height: 125mm !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-action-bar">
+    <div>
+      <h2>S K <span>BIKE POINT</span> — Architecture & Diagram Book</h2>
+      <p style="font-size: 12px; color: #64748b;">Consolidated Master & Sub-Diagrams • A4 Landscape Print Format</p>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="book-container">
+
+    <!-- COVER PAGE -->
+    <div class="page cover-page">
+      <div>
+        <div class="cover-badge">Architecture & System Specification</div>
+        <h1 class="cover-title">S K <span>BIKE POINT</span></h1>
+        <p style="font-size: 20px; font-weight: 800; color: #334155; margin-bottom: 8px;">Two-Wheeler Workshop Management System</p>
+        <p class="cover-subtitle">Master UML Use Case, Database Schema, Class Architecture, Sequence Flows, Process Flowchart, and Timeline</p>
+      </div>
+
+      <div class="cover-meta">
+        <div class="meta-box">
+          <span>Technology Stack</span>
+          <strong>Spring Boot 3 • React 18 • Vite • Tailwind</strong>
+        </div>
+        <div class="meta-box">
+          <span>Target Architecture</span>
+          <strong>RESTful APIs • JWT RBAC • Relational DB</strong>
+        </div>
+        <div class="meta-box">
+          <span>Document Type</span>
+          <strong>Architecture Specification</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Master Use Case -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 1.0 (Master)</div>
+          <h2 class="diagram-title">System Use Case Model</h2>
+          <p class="diagram-desc">Overall actor interactions across Guest, Customer, Mechanic, and Workshop Admin roles.</p>
+        </div>
+        <span class="type-badge">UML Use Case</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/01_use_case.svg" alt="01_use_case" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 1 of 9</span>
+      </div>
+    </div>
+
+    <!-- 2. Role Operations Sub-Diagram -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 1.1 (Sub-Diagram)</div>
+          <h2 class="diagram-title">Workshop Floor Operations & Role Permissions</h2>
+          <p class="diagram-desc">Floor job card management, mechanic allocation, inventory controls, and GST billing.</p>
+        </div>
+        <span class="type-badge">UML Use Case</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/01a_use_case_roles.svg" alt="01a_use_case_roles" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 2 of 9</span>
+      </div>
+    </div>
+
+    <!-- 3. Master ER Diagram -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 2.0 (Master)</div>
+          <h2 class="diagram-title">Complete Entity-Relationship (ER) Schema</h2>
+          <p class="diagram-desc">Complete database entity models, foreign keys, cardinality, and constraints.</p>
+        </div>
+        <span class="type-badge">Database Schema</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/02_er_diagram.svg" alt="02_er_diagram" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 3 of 9</span>
+      </div>
+    </div>
+
+    <!-- 4. Workshop Operations ER Sub-Diagram -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 2.1 (Sub-Diagram)</div>
+          <h2 class="diagram-title">ER Model: Service Jobs, Spares & Invoicing</h2>
+          <p class="diagram-desc">Job stage milestones, parts consumption mapping, stock ledger, and GST billing tables.</p>
+        </div>
+        <span class="type-badge">Database Schema</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/02a_er_workshop_operations.svg" alt="02a_er_workshop_operations" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 4 of 9</span>
+      </div>
+    </div>
+
+    <!-- 5. Master Class Diagram -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 3.0 (Master)</div>
+          <h2 class="diagram-title">System Class Diagram</h2>
+          <p class="diagram-desc">Spring Boot REST Controllers, Service interfaces, JPA Entities, and Data Transfer Objects.</p>
+        </div>
+        <span class="type-badge">UML Class Model</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/03_class_diagram.svg" alt="03_class_diagram" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 5 of 9</span>
+      </div>
+    </div>
+
+    <!-- 6. Sequence: Live Tracking & Booking -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 4.1 (Sequence A)</div>
+          <h2 class="diagram-title">Sequence: Live Repair Tracker & Booking Flow</h2>
+          <p class="diagram-desc">Synchronous API query lifecycle for public vehicle status lookup and appointment scheduling.</p>
+        </div>
+        <span class="type-badge">UML Sequence</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/04a_sequence_service_tracking.svg" alt="04a_sequence_service_tracking" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 6 of 9</span>
+      </div>
+    </div>
+
+    <!-- 7. Sequence: Stage Transition & Billing -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 4.2 (Sequence B)</div>
+          <h2 class="diagram-title">Sequence: Floor Repair & GST Invoicing Flow</h2>
+          <p class="diagram-desc">Workshop stage updates, inventory stock decrement, and GST 18% tax calculation workflow.</p>
+        </div>
+        <span class="type-badge">UML Sequence</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/04b_sequence_job_invoice.svg" alt="04b_sequence_job_invoice" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 7 of 9</span>
+      </div>
+    </div>
+
+    <!-- 8. Workshop Process Flowchart -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 5.0 (Master)</div>
+          <h2 class="diagram-title">End-to-End Workshop Process Flowchart</h2>
+          <p class="diagram-desc">Complete vehicle servicing lifecycle from intake to inspection, repair, wash, and gate pass handover.</p>
+        </div>
+        <span class="type-badge">Process Flowchart</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="svg/05_flowchart.svg" alt="05_flowchart" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 8 of 9</span>
+      </div>
+    </div>
+
+    <!-- 9. Implementation Gantt Roadmap -->
+    <div class="page">
+      <div class="diagram-header">
+        <div>
+          <div class="figure-tag">Figure 6.0 (Master)</div>
+          <h2 class="diagram-title">Engineering & Implementation Roadmap</h2>
+          <p class="diagram-desc">Gantt schedule covering system requirements, architecture, module development, and verification.</p>
+        </div>
+        <span class="type-badge">Project Roadmap</span>
+      </div>
+      <div class="diagram-canvas">
+        <img src="png/06_gantt.png" alt="06_gantt" />
+      </div>
+      <div class="diagram-footer">
+        <span>S K Bike Point • System Specification</span>
+        <span>Diagram 9 of 9</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

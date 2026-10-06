@@ -1,0 +1,46 @@
+erDiagram
+  SERVICE_JOBS ||--o{ JOB_STAGE_STEPS : "tracks_milestones"
+  SERVICE_JOBS ||--o{ JOB_PARTS_MAPPING : "consumes_items"
+  INVENTORY_PARTS ||--o{ JOB_PARTS_MAPPING : "supplied_from"
+  SERVICE_JOBS ||--|| INVOICES : "billed_by"
+
+  SERVICE_JOBS {
+    bigint id PK
+    string job_id UK
+    int stage_number
+    string stage_name
+    string status
+  }
+
+  JOB_STAGE_STEPS {
+    bigint id PK
+    bigint service_job_id FK
+    int step_number
+    string step_name
+    string status
+  }
+
+  JOB_PARTS_MAPPING {
+    bigint id PK
+    bigint service_job_id FK
+    bigint part_id FK
+    int quantity
+    decimal total_cost
+  }
+
+  INVENTORY_PARTS {
+    bigint id PK
+    string sku UK
+    int stock_quantity
+    int min_threshold
+  }
+
+  INVOICES {
+    bigint id PK
+    string invoice_number UK
+    decimal parts_total
+    decimal labor_total
+    decimal cgst_amount
+    decimal sgst_amount
+    decimal grand_total
+  }

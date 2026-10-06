@@ -1,0 +1,39 @@
+classDiagram
+  class AdminController {
+    +getDashboard()
+    +updateJobStage(jobId, status)
+    +adjustStock(partId, qty)
+  }
+
+  class CustomerController {
+    +getCustomerDashboard()
+    +getMyVehicles()
+    +bookSlot(bookingRequest)
+  }
+
+  class ServiceJob {
+    -Long id
+    -String jobId
+    -ServiceStatus status
+    -int stageNumber
+    +updateStage(step, name)
+  }
+
+  class InventoryPart {
+    -Long id
+    -String sku
+    -int stockQuantity
+    +adjustStock(delta)
+  }
+
+  class Invoice {
+    -Long id
+    -String invoiceNumber
+    -BigDecimal grandTotal
+    +computeTaxes()
+  }
+
+  AdminController --> ServiceJob
+  AdminController --> InventoryPart
+  CustomerController --> ServiceJob
+  ServiceJob --> Invoice

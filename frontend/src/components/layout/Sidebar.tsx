@@ -9,11 +9,6 @@ import {
   Wrench,
   Boxes,
   ReceiptText,
-  CreditCard,
-  BarChart3,
-  Settings,
-  Bell,
-  UserCircle,
   X,
 } from 'lucide-react';
 
@@ -22,28 +17,29 @@ export interface SidebarProps {
   onClose: () => void;
 }
 
+interface NavItem {
+  label: string;
+  path: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string;
+  badgeColor?: 'amber' | 'rose' | 'blue' | 'slate';
+}
+
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const { isAdmin } = useAuth();
 
-  const adminNavItems = [
+  const adminNavItems: NavItem[] = [
     { label: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-    { label: 'Customers', path: '/admin/customers', icon: Users, badge: '128' },
-    { label: 'Vehicles', path: '/admin/vehicles', icon: Bike, badge: '184' },
-    { label: 'Service Jobs', path: '/admin/service-jobs', icon: Wrench, badge: '14 active', badgeColor: 'amber' },
-    { label: 'Inventory & Parts', path: '/admin/inventory', icon: Boxes, badge: '4 low', badgeColor: 'rose' },
+    { label: 'Service Jobs', path: '/admin/service-jobs', icon: Wrench, badge: '5 active', badgeColor: 'amber' },
+    { label: 'Customers & Bikes', path: '/admin/customers', icon: Users, badge: '5' },
+    { label: 'Inventory & Spares', path: '/admin/inventory', icon: Boxes, badge: '3 low', badgeColor: 'rose' },
     { label: 'Invoices & Billing', path: '/admin/invoices', icon: ReceiptText },
-    { label: 'Payments', path: '/admin/payments', icon: CreditCard },
-    { label: 'Reports & Analytics', path: '/admin/reports', icon: BarChart3 },
-    { label: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 
-  const customerNavItems = [
+  const customerNavItems: NavItem[] = [
     { label: 'My Dashboard', path: '/customer/dashboard', icon: LayoutDashboard },
-    { label: 'My Vehicles', path: '/customer/vehicles', icon: Bike, badge: '2' },
-    { label: 'Service History', path: '/customer/service-history', icon: Wrench },
-    { label: 'My Invoices', path: '/customer/invoices', icon: ReceiptText },
-    { label: 'Notifications', path: '/customer/notifications', icon: Bell, badge: '1 new', badgeColor: 'blue' },
-    { label: 'My Profile', path: '/customer/profile', icon: UserCircle },
+    { label: 'My Two-Wheelers', path: '/customer/vehicles', icon: Bike, badge: '2' },
+    { label: 'Service History & Bills', path: '/customer/service-history', icon: Wrench },
   ];
 
   const navItems = isAdmin ? adminNavItems : customerNavItems;

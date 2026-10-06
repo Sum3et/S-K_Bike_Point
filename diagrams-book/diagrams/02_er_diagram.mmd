@@ -1,0 +1,46 @@
+erDiagram
+  USERS ||--o{ VEHICLES : "owns"
+  USERS ||--o{ SERVICE_JOBS : "creates / assigned"
+  VEHICLES ||--o{ SERVICE_JOBS : "undergoes"
+  SERVICE_JOBS ||--o{ INVENTORY_PARTS : "consumes"
+  SERVICE_JOBS ||--|| INVOICES : "settled_by"
+
+  USERS {
+    bigint id PK
+    string full_name
+    string phone_number
+    string role "ADMIN, CUSTOMER, MECHANIC"
+  }
+
+  VEHICLES {
+    bigint id PK
+    bigint user_id FK
+    string registration_number UK
+    string model
+    int odometer_km
+  }
+
+  SERVICE_JOBS {
+    bigint id PK
+    string job_id UK
+    bigint customer_id FK
+    bigint mechanic_id FK
+    string status "INTAKE, SERVICE, READY"
+    decimal estimated_cost
+  }
+
+  INVENTORY_PARTS {
+    bigint id PK
+    string sku UK
+    string part_name
+    int stock_quantity
+    decimal unit_price
+  }
+
+  INVOICES {
+    bigint id PK
+    string invoice_number UK
+    bigint service_job_id FK
+    decimal grand_total
+    string payment_status "PAID, PENDING"
+  }

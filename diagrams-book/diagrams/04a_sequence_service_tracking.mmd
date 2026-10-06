@@ -1,0 +1,13 @@
+sequenceDiagram
+  autonumber
+  actor User as Customer / Rider
+  participant UI as Web Portal
+  participant API as Backend API
+  participant DB as PostgreSQL DB
+
+  User->>UI: Enters Vehicle Reg No
+  UI->>API: GET /api/public/tracker?regNo=MH02AB1234
+  API->>DB: Query Active Job & Repair Stage
+  DB-->>API: Return Job, Spares & Progress
+  API-->>UI: 200 OK (Stage 3 of 5: Repair In Progress)
+  UI-->>User: Displays Real-time Progress Bar
